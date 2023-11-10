@@ -5,15 +5,11 @@
 Dedicated MIDI controllers that seamlessly map to Ableton Live devices, giving a user a consistent hardware control.
 
 
-Device automatic midi maps to the software equivalent of their hardware controls when changing tracks. Meaning the user will always have dedicate hardare control over devices on any selected track.
-
-
-
 ## **Purpose and Goals**
 
-The primary purpose of this project is to design and develop dedicated Eurorack format MIDI controllers tailored specifically for controlling Ableton Live devices. These will be plug and play, and function as control surfaces, meaning they will auto-map parameters as well as detect and target the specified device no matter where it is in your effects chain. Each hardware device will target it’s paired device on the selected track, and re-detect, and remap each time a track is changed for ease of workflow.
+The primary purpose of this project is to design and develop dedicated Eurorack format MIDI controllers tailored specifically for controlling Ableton Live devices. These will be plug and play, and function as control surfaces, meaning they will auto-map parameters as well as detect and target the specified device no matter where it is in your effects or instrument chain. Each hardware device will target it’s paired device on the selected track, and re-detect, and remap each time a track is changed for ease of workflow.
 
-The goal is to have seamless and hands-on experience for musicians and producers who use Ableton Live as their digital audio workstation (DAW) of choice.
+The goal is to have seamless and hands-on experience for musicians and producers who use Ableton Live as their DAW of choice.
 
 The project is currently in the prototype stage, with an Ableton compressor as the target, and using a off the shelf microcontroller as the brain.
 
