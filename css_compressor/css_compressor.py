@@ -621,11 +621,20 @@ class css_compressor(ControlSurface):
 					self.song().return_tracks[index].solo = False
 			if cnfg["element"] == "arm" and self.song().exclusive_arm:
 				for index in range(len(self.song().tracks)):
-					self.song().tracks[index].arm = False
+					try:
+						self.song().tracks[index].arm = False
+					except Exception as e:
+						continue           
 			if method_to_call is False:
-				setattr(eval(cnfg["module"]), cnfg["element"], True)
+				try:
+					setattr(eval(cnfg["module"]), cnfg["element"], True)
+				except Exception as e:
+					self.show_message("Unable to set " + str(cnfg["element"]) + " to True")
 			else: 
-				setattr(eval(cnfg["module"]), cnfg["element"], False)
+				try:
+					setattr(eval(cnfg["module"]), cnfg["element"], False)
+				except Exception as e:
+					self.show_message("Unable to set " + str(cnfg["element"]) + " to False")
 	def func_brain(self, cnfg):
 		fire = self.should_it_fire(cnfg)
 		if fire == 1: 
@@ -1007,6 +1016,13 @@ class css_compressor(ControlSurface):
 				elif cnfg["reverse_mode"] is True and remaining_steps > 0: speed_to_min = distance_to_min / remaining_steps
 				if speed_to_min is not 0: new_val = cnfg["current_position"] - speed_to_min
 		return new_val
+	def track_num_2(self, track_num):
+		if ((hasattr(self, '_session')) and (self._session is not None)):
+			track_num = track_num + self._session._track_offset
+			
+		else: 
+			track_num = track_num
+		return track_num
 	def track_num(self, track_num):
 		if ((hasattr(self, '_session')) and (self._session is not None)):
 			track_num = track_num + self._session._track_offset
@@ -1203,6 +1219,7 @@ class css_compressor(ControlSurface):
 	def set_sessionbox_offsets(self, track_offset, scene_offset):
 		if hasattr(self, '_session') and self._session is not None:
 			self._session.set_offsets(track_offset, scene_offset)
+			self._set_session_highlight( self._session.track_offset(), self._session.scene_offset(), self._session.width(), self._session.height(), True)
 	def set_sessionbox_combo_mode(self, combo):
 		if hasattr(self, '_session') and self._session is not None:
 			if combo == True:
@@ -1983,7 +2000,7 @@ class css_compressor(ControlSurface):
 		try:
 			self._session.set_offsets(track_offset, scene_offset)
 			self._session._reassign_scenes()
-			self.set_highlighting_session_component(self._session)
+			self._set_session_highlight( self._session.track_offset(), self._session.scene_offset(), self._session.width(), self._session.height(), True)
 			self.refresh_state()
 			self.call_script_reaction(active_mode, None, 'session_box_position')
 		except:
@@ -2037,7 +2054,7 @@ class css_compressor(ControlSurface):
 		try:
 			self._session.set_offsets(track_offset, scene_offset)
 			self._session._reassign_scenes()
-			self.set_highlighting_session_component(self._session)
+			self._set_session_highlight( self._session.track_offset(), self._session.scene_offset(), self._session.width(), self._session.height(), True)
 			self.refresh_state()
 			self.call_script_reaction(active_mode, None, 'session_box_position')
 		except:
@@ -2131,7 +2148,7 @@ class css_compressor(ControlSurface):
 		self._session.set_offsets(track_offset, scene_offset)
 		self._session.add_offset_listener(self._on_session_offset_changes, identify_sender= False)
 		self._session._reassign_scenes()
-		self.set_highlighting_session_component(self._session)
+		self._set_session_highlight( self._session.track_offset(), self._session.scene_offset(), self._session.width(), self._session.height(), True)
 		if clips: 
 			self._grid = ButtonMatrixElement(rows=[clips[(index*num_tracks):(index*num_tracks)+num_tracks] for index in range(num_scenes)])
 			self._session.set_clip_launch_buttons(self._grid)
@@ -2186,7 +2203,7 @@ class css_compressor(ControlSurface):
 			self.current_track_offset = self._session._track_offset
 			self.current_scene_offset = self._session._scene_offset
 			self._session.set_clip_launch_buttons(None)
-			self.set_highlighting_session_component(None)
+			self._set_session_highlight(-1, -1, -1, -1, False)
 			self._session.set_stop_all_clips_button(None)
 			self._session.set_stop_track_clip_buttons(None)
 			self._session.set_scene_launch_buttons(None)

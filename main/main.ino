@@ -77,10 +77,10 @@ private:
 // Define the encoder/button combinations
 MidiEncoder encoders[] = {
 
-    {21, 22, 23, 12, 13},   // Encoder 01
-    {18, 19, 20, 14, 15},   // Encoder 02
-    {12, 11, 10, 16, 17}    // Encoder 03
-//    {-1, -1, -1, 18, 19}    // Encoder 04?
+    {18, 19, 20, 12, 13},   // Encoder 01
+    {21, 22, 23, 14, 15},   // Encoder 02
+    {12, 11, 10, 16, 17},    // Encoder 03
+    {9, 8, 7, 18, 19}    // Encoder 04
 
         //{X1, X2, Y1, Z1, Z2},  // Add more encoders with buttons by replicating the format
       //x1: Encoder CLK Pin
