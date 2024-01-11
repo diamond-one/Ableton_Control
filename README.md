@@ -4,6 +4,8 @@
 ### Point of difference
 Dedicated MIDI controllers that seamlessly map to Ableton Live devices, giving a user a consistent hardware control.
 
+![796960423](https://github.com/diamond-one/Ableton_Control/assets/45215287/a07fbac7-eb8e-4a95-b35c-c8a9239ee44c)
+
 
 ## **Purpose and Goals**
 
@@ -11,7 +13,7 @@ The primary purpose of this project is to design and develop dedicated Eurorack 
 
 The goal is to have seamless and hands-on experience for musicians and producers who use Ableton Live as their DAW of choice.
 
-The project is currently in the prototype stage, with an Ableton compressor as the target, and using a off the shelf microcontroller as the brain.
+The project is currently in the prototype stage, with an Ableton compressor as the target and using an off-the-shelf microcontroller as the brain.
 
 ## **Features**
 
@@ -113,7 +115,7 @@ The project is currently in the prototype stage, with an Ableton compressor as t
 ## **Contributing**
 
 - TBD  - Hoping from some TAKT brain power for the hardware redesign
-edesign Control scripts so daisy-chaining
+design Control scripts so daisy-chaining
 
 ## **Contributing**
 
